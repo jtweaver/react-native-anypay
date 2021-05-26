@@ -28,6 +28,7 @@ type EMVSale = {
 };
 
 type AnypayType = {
+  startup(): null;
   test(test: string, location: string): void;
   initialize(config: AnypayConfig): Promise<string>;
   connectBluetooth(): Promise<string>;
@@ -38,6 +39,8 @@ type AnypayType = {
   isReaderConnected(): Promise<string>;
 };
 
-export const RNAnypayEventsEmitter = new NativeEventEmitter(RNAnypay);
+export const RNAnypayEventsEmitter = new NativeEventEmitter(
+  NativeModules.RNAnypay
+);
 
 export default RNAnypay as AnypayType;
