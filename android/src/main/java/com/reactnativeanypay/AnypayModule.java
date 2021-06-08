@@ -274,7 +274,7 @@ public class AnypayModule extends ReactContextBaseJavaModule {
 
         @Override
         public void onTransactionFailed(MeaningfulError reason) {
-          promise.reject("FAILED", reason.getLocalizedMessage());
+          promise.reject("FAILED", reason.toString());
         }
       });
     });
