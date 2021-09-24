@@ -128,7 +128,7 @@ dependencies {
   api 'com.facebook.react:react-native:+'
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-  compile files('com.anywherecommerce.android.sdk-release.aar')
+  compileOnly files('com.anywherecommerce.android.sdk-release.aar')
 
   implementation 'com.google.code.gson:gson:2.8.5'
   implementation('com.squareup.retrofit2:converter-gson:2.3.0') {
