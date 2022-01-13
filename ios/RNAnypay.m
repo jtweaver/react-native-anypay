@@ -7,6 +7,7 @@
 @property (nonatomic) AnyPayTerminal *terminal;
 @property (nonatomic) ANPProPayEndpoint *endpoint;
 @property (nonatomic) AnyPayTransaction *transaction;
+@property (nonatomic) bool cardReaderConnected;
 
 @end
 
@@ -93,7 +94,7 @@ RCT_REMAP_METHOD(isReaderConnected,
                  isReaderConnectedWithResolver:(RCTPromiseResolveBlock)resolve
                  withRejector:(RCTPromiseRejectBlock)reject)
 {
-    if ([[ANPCardReaderController sharedController] isReaderConnected]) {
+    if (self.cardReaderConnected) {
         resolve(@TRUE);
     } else {
         resolve(@FALSE);
@@ -144,7 +145,7 @@ RCT_REMAP_METHOD(emvSale,
             reject(@"FAILED", error.message, nil);
         }
     } cardReaderEvent:^(ANPMeaningfulMessage * _Nullable message) {
-        NSLog(@"On Card Reader Event");
+        NSLog(@"On Card Reader Event %@", message.message);
         [self sendEventWithName:@"CardReaderEvent" body:@{@"message": message.message}];
     }];
 }
@@ -162,24 +163,27 @@ RCT_REMAP_METHOD(cancelEMVSale,
 - (void)subscribeCardReaderCallbacks {
     [[ANPCardReaderController sharedController] subscribeOnCardReaderConnected:^(AnyPayCardReader * _Nullable cardReader) {
         NSLog(@"OnCardReaderConnected --> %@", cardReader.productID);
+        self.cardReaderConnected = true;
 
-        [self sendEventWithName:@"CardReaderConnected" body:@{@"message": cardReader.name}];
+        [self sendEventWithName:@"CardReaderConnected" body:@{}];
     }];
 
     [[ANPCardReaderController sharedController] subscribeOnCardReaderError:^(ANPMeaningfulError * _Nullable error) {
-        NSLog(@"OnCardReaderError --> %@", error);
+        NSLog(@"OnCardReaderError --> %@", error.message);
 
         [self sendEventWithName:@"CardReaderError" body:@{@"error": error.message}];
     }];
 
     [[ANPCardReaderController sharedController] subscribeOnCardReaderDisConnected:^{
         NSLog(@"OnCardReaderDisConnected ");
+        self.cardReaderConnected = false;
 
         [self sendEventWithName:@"CardReaderDisconnected" body:@{@"message": @"Card reader disconnected"}];
     }];
 
     [[ANPCardReaderController sharedController] subscribeOnCardReaderConnectionFailed:^(ANPMeaningfulError * _Nullable error) {
-        NSLog(@"OnCardReaderConnectionFailed --> %@", error);
+        NSLog(@"OnCardReaderConnectionFailed --> %@", error.message);
+        self.cardReaderConnected = false;
 
         [self sendEventWithName:@"CardReaderConnectionFailed" body:@{@"error": error.message}];
     }];
