@@ -112,6 +112,13 @@
 @property (nonatomic, strong) NSNumber *signatureCaptureEnabled;
 @property (nonatomic, strong) NSNumber *recordTransactions;
 
+@property (nonatomic) BOOL strictOfflineModeEnabled;
+@property (nonatomic) BOOL strictOfflineModeEnabledEditable;
+@property (nonatomic) BOOL autoValidateDeferredProcessing;
+@property (nonatomic) BOOL allowOTAUpdateSettings;
+
+@property (nonatomic, strong) NSNumber *networkCheckEnabled;
+
 - (void)addTaxRate:(ANPTaxLineItem *)tax;
 - (void)addTaxRates:(NSArray<ANPTaxLineItem *> *)taxesToAdd;
 
@@ -122,5 +129,6 @@
 
 - (BOOL)getSignatureCaptureEnabled;
 - (BOOL)getRecordTransactions;
+- (BOOL)getNetworkCheckEnabled;
 
 @end

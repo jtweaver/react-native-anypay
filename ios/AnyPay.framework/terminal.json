@@ -164,10 +164,13 @@
         "allowTip": true,
         "scheduleVoidOnFailure" : true,
         "signatureCaptureEnabled" : false,
+        "allowOTAUpdateSettings" : true,
+        "networkCheckEnabled" : true,
         "logging" : {
             "logLevel" : "ERROR",
             "remoteLoggingEnabled" : true,
             "logToFile" : false
-        }
+        },
+        "autoValidateDeferredProcessing" : false
      }
 }

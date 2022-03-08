@@ -96,6 +96,8 @@ FOUNDATION_EXPORT const unsigned char AnyPayVersionString[];
 + (BOOL)isTerminalActivated;
 + (BOOL)clearTerminalState;
 
++ (void)addBlockedBIN:(NSString *)binToBlock;
+
 #pragma mark - Configuration
 + (void)setDebugLogsEnabled:(BOOL)enabled __deprecated;
 
