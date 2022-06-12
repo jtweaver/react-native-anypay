@@ -1,6 +1,6 @@
 {
   "name": "react-native-anypay",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Native module for AnywhereCommerce AnyPay",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
