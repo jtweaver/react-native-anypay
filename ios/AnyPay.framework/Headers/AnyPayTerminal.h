@@ -52,7 +52,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getQueuedMessageForReader:(NSString *)readerSerialNumber completionHandler:(void (^)(ANPCloudPOSTerminalMessage *message, ANPMeaningfulError * _Nullable error))completionHandler;
 - (void)getTransactionWithUUID:(NSString *)uuid completionHandler:(void (^)(AnyPayTransaction *transaction, ANPMeaningfulError * _Nullable error))completionHandler;
 
-- (void)processDeferredTransactions:(void (^)(NSString *, id))eventHandler notificationHandler:(void (^)(NSString *transactionId, BOOL success, ANPMeaningfulError * _Nullable error))notificationHandler;
+- (void)processDeferredTransactions:(void (^)(NSString *, id))eventHandler notificationHandler:(void (^)(AnyPayTransaction *transaction, ANPTransactionStatus status, ANPMeaningfulError * _Nullable error))notificationHandler;
+
+- (NSArray<AnyPayTransaction *> *)getDepletedDeferredTransactions;
 
 - (void)logout;
 

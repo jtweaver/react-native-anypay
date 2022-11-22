@@ -8,7 +8,7 @@
 
 #import "AnyPayModel.h"
 
-@class ANPLogConfigurationProperties;
+@class ANPLogConfigurationProperties, ANPOfflineConfiguration;
 @interface ANPConfiguration : AnyPayModel
 
 @property (nonatomic, copy) NSString *defaultDateFormat;
@@ -93,7 +93,7 @@
 @property (nonatomic, copy) NSString *transactionReportingMode;
 @property (nonatomic, copy) NSString *transactionReportingModeEditable;
 @property (nonatomic, copy) NSString *type;
-@property (nonatomic, copy) NSNumber *unreferencedRefundLimit;
+@property (nonatomic, strong) NSNumber *unreferencedRefundLimit;
 @property (nonatomic, copy) NSString *userAuthenticationMode;
 @property (nonatomic, copy) NSString *version;
 @property (nonatomic, copy) NSString *CLASS_META_KEY;
@@ -118,6 +118,8 @@
 @property (nonatomic) BOOL allowOTAUpdateSettings;
 
 @property (nonatomic, strong) NSNumber *networkCheckEnabled;
+
+@property (nonatomic, strong) ANPOfflineConfiguration *offlineSettings;
 
 - (void)addTaxRate:(ANPTaxLineItem *)tax;
 - (void)addTaxRates:(NSArray<ANPTaxLineItem *> *)taxesToAdd;

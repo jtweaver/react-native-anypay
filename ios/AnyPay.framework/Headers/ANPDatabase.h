@@ -18,5 +18,6 @@
 + (void)deleteAllTransactions:(NSError **)error;
 + (void)deleteTransactionWithID:(NSString *)ID error:(NSError * __autoreleasing *)error;
 + (NSArray<AnyPayTransaction *> *)getAllOfflineDeferredTransactions;
++ (NSArray<AnyPayTransaction *> *)getDepletedDeferredTransactions;
 
 @end

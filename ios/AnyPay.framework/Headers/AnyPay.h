@@ -49,6 +49,7 @@ FOUNDATION_EXPORT const unsigned char AnyPayVersionString[];
 #import "ANPLogger.h"
 #import "ANPLogConfigurationProperties.h"
 #import "ANPHousekeeper.h"
+#import "ANPOfflineConfiguration.h"
 
 //CloudPOS related
 #import "ANPCloudAPI.h"
