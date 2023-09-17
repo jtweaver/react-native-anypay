@@ -26,5 +26,6 @@
 #import "ANPWiseCube.h"
 #import "ANPBBPOSDevice.h"
 #import "AnyPayCardReader.h"
+#import "ANPChipperC3X.h"
 
 #endif /* AnyPayCardReaders_h */
